@@ -1,0 +1,27 @@
+﻿<Window x:Class="BlockCypherPlus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlockCypherPlus"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="#FF1F1F1F" ResizeMode="CanMinimize">
+    <Grid x:Name="MainGrid" Visibility="Visible">
+        <Canvas x:Name="FirstTimeScreen" Visibility="Hidden">
+            <PasswordBox x:Name="FirstTime_PasswordField" MaxLength="32" Width="300" FontSize="16" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" CaretBrush="White" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="206" VerticalAlignment="Top"/>
+            <Label x:Name="FirstTime_Title" Content="Welcome to BlockCypher" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Width="300" Foreground="White" FontSize="24" Height="40" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="65" VerticalAlignment="Top"/>
+            <Label x:Name="FirstTime_Subtitle" Content="Create your password below" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="White" FontSize="14" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="105" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="FirstTime_PasswordFieldConfirm" MaxLength="32" Width="300" FontSize="16" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" CaretBrush="White" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="286" VerticalAlignment="Top"/>
+            <Button x:Name="FirstTime_PasswordButton" Content="Confirm" Width="150" FontSize="16" HorizontalAlignment="Left" Canvas.Left="325" Canvas.Top="361" VerticalAlignment="Top" Click="FirstTime_PasswordButton_Click" ClickMode="Release"/>
+            <Label x:Name="FirstTime_Error" Content="Password Do Not Match!" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="#FFFF3D3D" FontSize="14" Visibility="Hidden" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="242" VerticalAlignment="Top"/>
+        </Canvas>
+        <Canvas x:Name="LoginScreen" Visibility="Visible">
+            <PasswordBox x:Name="Login_PasswordField" MaxLength="32" Width="300" FontSize="16" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" CaretBrush="White" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="206" VerticalAlignment="Top"/>
+            <Label x:Name="Login_Title" Content="Welcome Back" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Width="300" Foreground="White" FontSize="24" Height="40" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="65" VerticalAlignment="Top"/>
+            <Label x:Name="Login_Subtitle" Content="Enter your password below" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="White" FontSize="14" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="105" VerticalAlignment="Top"/>
+            <Button x:Name="Login_PasswordButton" Content="Login" Width="150" FontSize="16" HorizontalAlignment="Left" Canvas.Left="325" Canvas.Top="361" VerticalAlignment="Top" Click="Login_PasswordButton_Click" ClickMode="Release"/>
+            <Label x:Name="Login_Error" Content="Invalid Password!" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="#FFFF3D3D" FontSize="14" Visibility="Hidden" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="242" VerticalAlignment="Top"/>
+        </Canvas>
+
+    </Grid>
+</Window>
