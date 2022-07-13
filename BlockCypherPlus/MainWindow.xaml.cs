@@ -45,52 +45,79 @@ namespace BlockCypherPlus
             }
         }
 
-        private void SaveData()
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!Directory.Exists(userFolderPath))
+            if (LastScreen != null)
             {
-                Directory.CreateDirectory(userFolderPath);
+                LastScreen.Visibility = Visibility.Hidden;
             }
+            LastScreen = MenuScreen;
+            LastScreen.Visibility = Visibility.Visible;
+        }
 
-            using (StreamWriter sw = File.CreateText(userDataPath))
+        private byte[]? publicKey = null;
+        private byte[]? privateKey = null;
+        private byte[]? sharedSecret = null;
+
+        private void AddContacts_CopyPublicKey_Click(object sender, RoutedEventArgs e)
+        {
+            if (publicKey != null)
             {
-                sw.WriteLine(Encryption.Encrypt(JsonSerializer.Serialize(data), sessionKey));
+                Clipboard.SetText(Convert.ToBase64String(publicKey));
             }
         }
 
-        private void LoadData()
+        private void AddContacts_AddContact_Click(object sender, RoutedEventArgs e)
         {
-            string cryptoData = "";
-            using (StreamReader sr = File.OpenText(userDataPath))
+            if (!data.Contacts.Exists(contact => contact.ContactName == AddContacts_Name.Text))
             {
-                cryptoData = sr.ReadToEnd();
-            }
-            data = JsonSerializer.Deserialize<ProgramData>(Encryption.Decrypt(cryptoData, sessionKey));
-        }
-
-        private void FirstTime_PasswordButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (FirstTime_PasswordField.Password == FirstTime_PasswordFieldConfirm.Password)
+                try
+                {
+                    byte[] cipherText = Convert.FromBase64String(AddContacts_CipherTextInput.Text);
+                }
+                catch
+                {
+                    AddContacts_Error.Visibility = Visibility.Visible;
+                }
+            } else
             {
-                sessionKey = FirstTime_PasswordField.Password;
-                data = new ProgramData();
-                SaveData();
-            } 
-            else
-            {
-                FirstTime_Error.Visibility = Visibility.Visible;
+                AddContacts_Error.Content = "Contact name already exists!";
+                AddContacts_Error.Visibility = Visibility.Visible;
             }
         }
 
-        private void Login_PasswordButton_Click(object sender, RoutedEventArgs e)
+        private void ReceiveKey_CopyCipherText_Click(object sender, RoutedEventArgs e)
         {
-            sessionKey = Login_PasswordField.Password;
             try
             {
-                LoadData();
-            } catch
+                byte[] cipherText = new byte[0];
+
+                Clipboard.SetText(Convert.ToBase64String(cipherText));
+            } 
+            catch
             {
-                Login_Error.Visibility = Visibility.Visible;
+                AddContacts_Error.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ReceiveKey_AddContact_Click(object sender, RoutedEventArgs e)
+        {
+            if (!data.Contacts.Exists(contact => contact.ContactName == AddContacts_Name.Text))
+            {
+                if (sharedSecret != null)
+                {
+                    data.Contacts.Add(new Contact(ReceiveKey_ContactName.Text, sharedSecret));
+                    SaveData();
+                } 
+                else
+                {
+                    AddContacts_Error.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                AddContacts_Error.Content = "Contact name already exists!";
+                AddContacts_Error.Visibility = Visibility.Visible;
             }
         }
     }
