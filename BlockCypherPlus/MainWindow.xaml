@@ -56,11 +56,11 @@
             <Button x:Name="ReceiveKey_CopyCipherText" Content="Copy Cipher Text" Width="150" Canvas.Left="325" Canvas.Top="313" Click="ReceiveKey_CopyCipherText_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="ReceiveKey_AddContact" Content="Add Contact" Width="150" Canvas.Left="325" Canvas.Top="351" Click="ReceiveKey_AddContact_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="ReceiveKey_BackButton" Content="Back" Width="150" Canvas.Left="325" Canvas.Top="50" Click="ContactsList_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox x:Name="ReceiveKey_ContactName" Canvas.Left="300" TextWrapping="NoWrap" Canvas.Top="150" Width="200" MaxLength="20" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="ReceiveKey_Name" Canvas.Left="300" TextWrapping="NoWrap" Canvas.Top="150" Width="200" MaxLength="20" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label x:Name="ReceiveKey_NameLabel" Content="Contact Name:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="White" FontSize="14" Height="43" Canvas.Top="140" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="122" Width="178"/>
             <TextBox x:Name="ReceiveKey_PublicKeyInput" Canvas.Left="226" TextWrapping="NoWrap" Canvas.Top="189" Width="348" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label x:Name="ReceiveKey_Error" Content="Failed to add contact!" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="#FFFF3D3D" FontSize="14" Visibility="Hidden" Canvas.Left="250" Canvas.Top="386" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ReceiveKey_Description" Canvas.Left="235" TextWrapping="Wrap" Text="Paste the public key above and send the cipher text back." Canvas.Top="230" FontSize="14" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="43"/>
+            <TextBlock x:Name="ReceiveKey_Description" Canvas.Left="235" TextWrapping="Wrap" Text="Paste the received public key above and send the cipher text back." Canvas.Top="230" FontSize="14" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="43"/>
         </Canvas>
 
     </Grid>

@@ -96,28 +96,28 @@ namespace BlockCypherPlus
             } 
             catch
             {
-                AddContacts_Error.Visibility = Visibility.Visible;
+                ReceiveKey_Error.Visibility = Visibility.Visible;
             }
         }
 
         private void ReceiveKey_AddContact_Click(object sender, RoutedEventArgs e)
         {
-            if (!data.Contacts.Exists(contact => contact.ContactName == AddContacts_Name.Text))
+            if (!data.Contacts.Exists(contact => contact.ContactName == ReceiveKey_Name.Text))
             {
                 if (sharedSecret != null)
                 {
-                    data.Contacts.Add(new Contact(ReceiveKey_ContactName.Text, sharedSecret));
+                    data.Contacts.Add(new Contact(ReceiveKey_Name.Text, sharedSecret));
                     SaveData();
                 } 
                 else
                 {
-                    AddContacts_Error.Visibility = Visibility.Visible;
+                    ReceiveKey_Error.Visibility = Visibility.Visible;
                 }
             }
             else
             {
-                AddContacts_Error.Content = "Contact name already exists!";
-                AddContacts_Error.Visibility = Visibility.Visible;
+                ReceiveKey_Error.Content = "Contact name already exists!";
+                ReceiveKey_Error.Visibility = Visibility.Visible;
             }
         }
     }
