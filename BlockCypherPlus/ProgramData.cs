@@ -8,6 +8,7 @@ using System.IO;
 
 namespace BlockCypherPlus
 {
+    [Serializable]
     internal class ProgramData
     {
         public List<Contact> Contacts = new List<Contact>();

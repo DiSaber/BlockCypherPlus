@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace BlockCypherPlus
 {
@@ -28,7 +29,7 @@ namespace BlockCypherPlus
 
             using (StreamWriter sw = File.CreateText(userDataPath))
             {
-                sw.WriteLine(Encryption.Encrypt(JsonSerializer.Serialize(data), sessionKey));
+                sw.WriteLine(Encryption.Encrypt(JsonConvert.SerializeObject(data), sessionKey));
             }
         }
 
@@ -39,7 +40,7 @@ namespace BlockCypherPlus
             {
                 cryptoData = sr.ReadToEnd();
             }
-            data = JsonSerializer.Deserialize<ProgramData>(Encryption.Decrypt(cryptoData, sessionKey));
+            data = JsonConvert.DeserializeObject<ProgramData>(Encryption.Decrypt(cryptoData, sessionKey));
         }
 
         private void SetupContacts()

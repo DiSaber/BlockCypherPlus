@@ -26,7 +26,7 @@
             <TextBox x:Name="Encrypt_Output" Canvas.Left="150" TextWrapping="NoWrap" Canvas.Top="377" Width="500" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Transparent" Foreground="White" FontSize="16"/>
             <Button x:Name="Encrypt_CopyToClipboard" Content="Copy" Width="100" Canvas.Left="350" Canvas.Top="405" Click="Encrypt_CopyToClipboard_Click" ClickMode="Release" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"/>
             <ComboBox x:Name="Encrypt_ContactDropdown" Width="120" Canvas.Left="340" HorizontalAlignment="Center" Canvas.Top="142" VerticalAlignment="Top"/>
-            <TextBox x:Name="Encrypt_Input" Canvas.Left="150" TextWrapping="Wrap" Canvas.Top="168" Width="500" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Height="153" CaretBrush="White"/>
+            <TextBox x:Name="Encrypt_Input" Canvas.Left="150" TextWrapping="Wrap" Canvas.Top="168" Width="500" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Height="153" CaretBrush="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             <Button x:Name="Encrypt_Encrypt" Content="Encrypt" Width="100" Canvas.Left="350" Canvas.Top="326" Click="Encrypt_Encrypt_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Button x:Name="Encrypt_BackButton" Content="Back" Width="150" Canvas.Left="325" Canvas.Top="50" Click="BackButton_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Canvas>
@@ -34,33 +34,40 @@
             <Button x:Name="Menu_EncryptButton" Content="Encrypt Messages" Width="150" Canvas.Left="325" Canvas.Top="250" Click="Menu_EncryptButton_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Label x:Name="Menu_Title" Content="BlockCypher" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Width="300" Foreground="White" FontSize="24" Height="40" Canvas.Left="250" Canvas.Top="65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button x:Name="Menu_ContactsList" Content="Contacts List" Width="150" Canvas.Left="325" Canvas.Top="200" Click="ContactsList_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Button x:Name="Menu_DecryptButton" Content="Decrypt Messages" Width="150" Canvas.Left="325" Canvas.Top="300" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="Menu_DecryptButton" Content="Decrypt Messages" Width="150" Canvas.Left="325" Canvas.Top="300" Click="Menu_DecryptButton_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Canvas>
         <Canvas x:Name="ContactsScreen" Visibility="Hidden">
-            <Button x:Name="Contacts_ReceiveKey" Content="Receive Key" Width="150" Canvas.Left="600" Canvas.Top="250" Click="Contacts_ReceiveCode_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Button x:Name="Contacs_AddContact" Content="Add Contact" Width="150" Canvas.Left="600" Canvas.Top="210" Click="Contacs_AddContact_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="Contacts_ReceiveKey" Content="Receive Key" Width="150" Canvas.Left="325" Canvas.Top="330" Click="Contacts_ReceiveCode_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="Contacs_AddContact" Content="Add Contact" Width="150" Canvas.Left="325" Canvas.Top="290" Click="Contacs_AddContact_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="Contacts_BackButton" Content="Back" Width="150" Canvas.Left="325" Canvas.Top="50" Click="BackButton_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <ComboBox x:Name="Contacts_ContactsDropdown" Width="120" Canvas.Left="340" Canvas.Top="142" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="Contacts_RemoveContact" Content="Remove Contact" Width="150" Canvas.Left="325" Canvas.Top="200" Click="Contacts_RemoveContact_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Canvas>
         <Canvas x:Name="AddContactsScreen" Visibility="Hidden">
             <Button x:Name="AddContacts_CopyPublicKey" Content="Copy Public Key" Width="150" Canvas.Left="325" Canvas.Top="189" Click="AddContacts_CopyPublicKey_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="AddContacts_AddContact" Content="Add Contact" Width="150" Canvas.Left="325" Canvas.Top="351" Click="AddContacts_AddContact_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="AddContacts_BackButton" Content="Back" Width="150" Canvas.Left="325" Canvas.Top="50" Click="ContactsList_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox x:Name="AddContacts_Name" Canvas.Left="300" TextWrapping="NoWrap" Canvas.Top="150" Width="200" MaxLength="20" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="AddContacts_Name" Canvas.Left="300" TextWrapping="NoWrap" Canvas.Top="150" Width="200" MaxLength="20" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" CaretBrush="White"/>
             <Label x:Name="AddContacts_NameLabel" Content="Contact Name:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="White" FontSize="14" Height="43" Canvas.Top="140" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="122" Width="178"/>
-            <TextBox x:Name="AddContacts_CipherTextInput" Canvas.Left="226" TextWrapping="NoWrap" Canvas.Top="313" Width="348" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="AddContacts_CipherTextInput" Canvas.Left="226" TextWrapping="NoWrap" Canvas.Top="313" Width="348" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" CaretBrush="White"/>
             <Label x:Name="AddContacts_Error" Content="Failed to add contact!" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="#FFFF3D3D" FontSize="14" Visibility="Hidden" Canvas.Left="250" Canvas.Top="386" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <TextBlock x:Name="AddContacts_Description" Canvas.Left="235" TextWrapping="Wrap" Text="Copy your public key and send it to someone. Have them enter the public key in the &quot;receive key&quot; menu and send you the cipher text. Enter the cipher text below and the key exchange is complete." Canvas.Top="214" FontSize="14" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="94"/>
         </Canvas>
-        <Canvas x:Name="ReceiveKeyScreen" Visibility="Visible">
+        <Canvas x:Name="ReceiveKeyScreen" Visibility="Hidden">
             <Button x:Name="ReceiveKey_CopyCipherText" Content="Copy Cipher Text" Width="150" Canvas.Left="325" Canvas.Top="313" Click="ReceiveKey_CopyCipherText_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="ReceiveKey_AddContact" Content="Add Contact" Width="150" Canvas.Left="325" Canvas.Top="351" Click="ReceiveKey_AddContact_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="ReceiveKey_BackButton" Content="Back" Width="150" Canvas.Left="325" Canvas.Top="50" Click="ContactsList_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox x:Name="ReceiveKey_Name" Canvas.Left="300" TextWrapping="NoWrap" Canvas.Top="150" Width="200" MaxLength="20" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="ReceiveKey_Name" Canvas.Left="300" TextWrapping="NoWrap" Canvas.Top="150" Width="200" MaxLength="20" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" CaretBrush="White"/>
             <Label x:Name="ReceiveKey_NameLabel" Content="Contact Name:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="White" FontSize="14" Height="43" Canvas.Top="140" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="122" Width="178"/>
-            <TextBox x:Name="ReceiveKey_PublicKeyInput" Canvas.Left="226" TextWrapping="NoWrap" Canvas.Top="189" Width="348" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="ReceiveKey_PublicKeyInput" Canvas.Left="226" TextWrapping="NoWrap" Canvas.Top="189" Width="348" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" CaretBrush="White"/>
             <Label x:Name="ReceiveKey_Error" Content="Failed to add contact!" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Width="300" Foreground="#FFFF3D3D" FontSize="14" Visibility="Hidden" Canvas.Left="250" Canvas.Top="386" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <TextBlock x:Name="ReceiveKey_Description" Canvas.Left="235" TextWrapping="Wrap" Text="Paste the received public key above and send the cipher text back." Canvas.Top="230" FontSize="14" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Width="330" Height="43"/>
+        </Canvas>
+        <Canvas x:Name="DecryptMessagesScreen" Visibility="Hidden">
+            <TextBox x:Name="Decrypt_Output" Canvas.Left="150" TextWrapping="Wrap" Canvas.Top="221" Width="500" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Transparent" Foreground="White" FontSize="16" Height="200"/>
+            <TextBox x:Name="Decrypt_Input" Canvas.Left="150" TextWrapping="NoWrap" Canvas.Top="168" Width="500" Background="Transparent" Foreground="White" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" CaretBrush="White"/>
+            <Button x:Name="Decrypt_DecryptButton" Content="Decrypt" Width="100" Canvas.Left="350" Canvas.Top="196" Click="Decrypt_DecryptButton_Click" ClickMode="Release" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="Decrypt_BackButton" Content="Back" Width="150" Canvas.Left="325" Canvas.Top="50" Click="BackButton_Click" ClickMode="Release" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Canvas>
 
     </Grid>

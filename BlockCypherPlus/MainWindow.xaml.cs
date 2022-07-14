@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OpenQuantumSafe;
 
 namespace BlockCypherPlus
 {
@@ -53,6 +54,22 @@ namespace BlockCypherPlus
             }
             LastScreen = MenuScreen;
             LastScreen.Visibility = Visibility.Visible;
+
+            if (data.Contacts.Count > 0)
+            {
+                Encrypt_ContactDropdown.SelectedIndex = 0;
+                Contacts_ContactsDropdown.SelectedIndex = 0;
+            }
+            else
+            {
+                Encrypt_ContactDropdown.SelectedIndex = -1;
+                Contacts_ContactsDropdown.SelectedIndex = -1;
+            }
+            Encrypt_Input.Text = "";
+            Encrypt_Output.Text = "";
+
+            Decrypt_Input.Text = "";
+            Decrypt_Output.Text = "";
         }
 
         private byte[]? publicKey = null;
@@ -74,9 +91,24 @@ namespace BlockCypherPlus
                 try
                 {
                     byte[] cipherText = Convert.FromBase64String(AddContacts_CipherTextInput.Text);
+
+                    using (KEM kem = new KEM("Kyber1024"))
+                    {
+                        kem.decaps(out sharedSecret, cipherText, privateKey);
+                    }
+
+                    data.Contacts.Add(new Contact(AddContacts_Name.Text, sharedSecret));
+                    publicKey = null;
+                    privateKey = null;
+                    sharedSecret = null;
+
+                    SaveData();
+                    SetupContacts();
+                    ToContactsScreen();
                 }
                 catch
                 {
+                    AddContacts_Error.Content = "Failed to add contact!";
                     AddContacts_Error.Visibility = Visibility.Visible;
                 }
             } else
@@ -90,12 +122,27 @@ namespace BlockCypherPlus
         {
             try
             {
-                byte[] cipherText = new byte[0];
+                if (ReceiveKey_PublicKeyInput.Text.Length > 0)
+                {
+                    publicKey = Convert.FromBase64String(ReceiveKey_PublicKeyInput.Text);
+                    byte[] cipherText;
 
-                Clipboard.SetText(Convert.ToBase64String(cipherText));
+                    using (KEM kem = new KEM("Kyber1024"))
+                    {
+                        kem.encaps(out cipherText, out sharedSecret, publicKey);
+                    }
+
+                    Clipboard.SetText(Convert.ToBase64String(cipherText));
+                }
+                else
+                {
+                    ReceiveKey_Error.Content = "Failed to add contact!";
+                    ReceiveKey_Error.Visibility = Visibility.Visible;
+                }
             } 
             catch
             {
+                ReceiveKey_Error.Content = "Failed to add contact!";
                 ReceiveKey_Error.Visibility = Visibility.Visible;
             }
         }
@@ -108,9 +155,12 @@ namespace BlockCypherPlus
                 {
                     data.Contacts.Add(new Contact(ReceiveKey_Name.Text, sharedSecret));
                     SaveData();
+                    SetupContacts();
+                    ToContactsScreen();
                 } 
                 else
                 {
+                    ReceiveKey_Error.Content = "Failed to add contact!";
                     ReceiveKey_Error.Visibility = Visibility.Visible;
                 }
             }
