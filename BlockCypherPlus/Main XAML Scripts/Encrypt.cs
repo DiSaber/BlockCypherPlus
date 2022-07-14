@@ -33,12 +33,20 @@ namespace BlockCypherPlus
                 {
                     if (contact.ContactName == Encrypt_ContactDropdown.SelectedItem.ToString())
                     {
-                        Encrypt_Output.Text = Encryption.Encrypt(JsonConvert.SerializeObject(new MessageContainer(Encrypt_Input.Text)), contact.SharedSecret);
-                        break;
+                        try
+                        {
+                            Encrypt_Output.Text = Encryption.Encrypt(JsonConvert.SerializeObject(new MessageContainer(Encrypt_Input.Text)), contact.SharedSecret);
+                            return;
+                        } 
+                        catch 
+                        { 
+                            continue;
+                        }
                     }
                 }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
+            Encrypt_Output.Text = "Message could not be encrypted";
         }
     }
 }

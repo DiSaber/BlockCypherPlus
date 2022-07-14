@@ -26,7 +26,7 @@ namespace BlockCypherPlus
             {
                 try
                 {
-                    Decrypt_Output.Text = $"Message Author: {contact.ContactName}    Message Content: {JsonConvert.DeserializeObject<MessageContainer>(Encryption.Decrypt(Decrypt_Input.Text, contact.SharedSecret)).Message}";
+                    Decrypt_Output.Text = $"Message Author: {contact.ContactName}\n\n{JsonConvert.DeserializeObject<MessageContainer>(Encryption.Decrypt(Decrypt_Input.Text, contact.SharedSecret)).Message}";
                     return;
                 }
                 catch
@@ -34,7 +34,7 @@ namespace BlockCypherPlus
                     continue;
                 }
             }
-            Decrypt_Output.Text = $"Message could not be decrypted";
+            Decrypt_Output.Text = "Message could not be decrypted";
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
     }
