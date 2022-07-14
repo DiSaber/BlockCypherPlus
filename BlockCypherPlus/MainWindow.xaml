@@ -1,11 +1,11 @@
-﻿<Window x:Class="BlockCypherPlus.MainWindow"
+﻿<Window x:Name="BlockCypherPlus" x:Class="BlockCypherPlus.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlockCypherPlus"
         mc:Ignorable="d"
-        Title="MainWindow" Height="475" Width="800" Background="#FF1F1F1F" ResizeMode="CanMinimize" SizeToContent="Manual" WindowStartupLocation="CenterScreen">
+        Title="Block Cypher Plus" Height="475" Width="800" Background="#FF1F1F1F" ResizeMode="CanMinimize" SizeToContent="Manual" WindowStartupLocation="CenterScreen">
     <Grid x:Name="MainGrid" Visibility="Visible">
         <Canvas x:Name="FirstTimeScreen" Visibility="Hidden">
             <PasswordBox x:Name="FirstTime_PasswordField" MaxLength="32" Width="300" FontSize="16" VerticalContentAlignment="Center" Background="Transparent" Foreground="White" CaretBrush="White" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="206" VerticalAlignment="Top"/>
