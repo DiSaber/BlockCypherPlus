@@ -1,20 +1,8 @@
-﻿using System;
-using System.Text.Json;
+﻿using OpenQuantumSafe;
+using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using OpenQuantumSafe;
 
 namespace BlockCypherPlus
 {
@@ -37,7 +25,7 @@ namespace BlockCypherPlus
             {
                 LastScreen = LoginScreen;
                 LastScreen.Visibility = Visibility.Visible;
-            } 
+            }
             else
             {
                 LoginScreen.Visibility = Visibility.Hidden;
@@ -111,7 +99,8 @@ namespace BlockCypherPlus
                     AddContacts_Error.Content = "Failed to add contact!";
                     AddContacts_Error.Visibility = Visibility.Visible;
                 }
-            } else
+            }
+            else
             {
                 AddContacts_Error.Content = "Contact name already exists!";
                 AddContacts_Error.Visibility = Visibility.Visible;
@@ -139,7 +128,7 @@ namespace BlockCypherPlus
                     ReceiveKey_Error.Content = "Failed to add contact!";
                     ReceiveKey_Error.Visibility = Visibility.Visible;
                 }
-            } 
+            }
             catch
             {
                 ReceiveKey_Error.Content = "Failed to add contact!";
@@ -157,7 +146,7 @@ namespace BlockCypherPlus
                     SaveData();
                     SetupContacts();
                     ToContactsScreen();
-                } 
+                }
                 else
                 {
                     ReceiveKey_Error.Content = "Failed to add contact!";
