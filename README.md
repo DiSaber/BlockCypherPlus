@@ -4,6 +4,6 @@ To install the program just download the latest release on the right or from [he
 ## Best practices
 First and foremost I highly suggest you write down your password in a secure location as there is no way to recover it. If you want certain messages you recieve to be safe from deletion you may want to store the encrypted copy somewhere on your device.
 ## Resetting Password
-Unfortunately there is no way to recover your password as AES 256 is irreversible. You can however delete the file titled "BlockCypher.dat" at the directory "C:\Users\\{Username}\AppData\Roaming\BlockCypher" to reset the application.
+Unfortunately there is no way to recover your password as AES 256 is irreversible. You can however delete the file titled "BlockCypher.dat" in the directory "C:\Users\\{Username}\AppData\Roaming\BlockCypher" to reset the application.
 ## Technical specifications
 I use Kyber-1024 for the key exchange and AES-256 for data storage and message sharing.
